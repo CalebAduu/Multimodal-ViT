@@ -37,55 +37,8 @@ Clinical Metadata (12 tokens)
 
 ---
 
-## Dataset
 
-| Split | Source | Images |
-|---|---|---|
-| Train | HAM10000 + BCN20000 minority boost (DF, VASC, AKIEC) | ~11,000 |
-| Validation | HAM10000 only | ~2,200 |
-| Test | HAM10000 only | 1,471 |
 
-Splits are **lesion-stratified** (70/15/15) — no lesion appears in more than one split. Class imbalance handled via `WeightedRandomSampler` (inverse-frequency weights).
-
-**Labels:** NV (0), MEL (1), BCC (2), AKIEC (3), BKL (4), DF (5), VASC (6)
-
----
-
-## Results
-
-### Internal Test Set (HAM10000, n=1,471)
-
-| Metric | Value |
-|---|---|
-| Overall Accuracy | 78.53% |
-| Macro AUROC | 0.962 |
-| Malignant Sensitivity (MEL+BCC+AKIEC) | 0.709 |
-| Macro F1 | 0.688 |
-| ECE (post temperature scaling) | 0.024 |
-
-### External Validation
-
-| Dataset | Modality | Metric | Score |
-|---|---|---|---|
-| Derm7pt | Dermoscopy | Macro AUROC | 0.853 |
-| PAD-UFES-20 | Smartphone | Macro AUROC | 0.760 |
-| Fitzpatrick17k | Clinical photo | Binary malignancy AUROC | 0.630 |
-| DDI | Clinical photo | Binary malignancy AUROC | 0.700 |
-
-### Ablation Study (malignant sensitivity, test set)
-
-| Model | Mal Sens | Macro AUROC |
-|---|---|---|
-| Image-only ViT (Exp 1) | 0.593 | 0.932 |
-| Late concat MLP fusion (Exp 2) | 0.579 | 0.956 |
-| Hadamard fusion (Exp 3) | 0.626 | 0.959 |
-| One-way cross-attention (Exp 4) | 0.594 | 0.955 |
-| No BCN20000 boost (Exp 5) | 0.634 | 0.962 |
-| **Champion (bidirectional, full data)** | **0.709** | **0.962** |
-
-All pairwise malignant sensitivity comparisons are statistically significant (paired bootstrap, n=10,000, Holm-Bonferroni corrected, p < 0.05).
-
----
 
 ## Repository Structure
 
@@ -166,9 +119,7 @@ If you use this code, please cite:
 @mastersthesis{hull2025multimodal,
   author    = {Caleb},
   title     = {Interpretable Multimodal Vision Transformer Framework for Skin Cancer Diagnosis},
-  school    = {University of Hull},
-  year      = {2025},
-  supervisor = {Dr Temitayo Matthew Fagbola}
+
 }
 ```
 
