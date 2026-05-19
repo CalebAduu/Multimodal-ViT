@@ -119,7 +119,9 @@ If you use this code, please cite:
 @mastersthesis{hull2025multimodal,
   author    = {Caleb},
   title     = {Interpretable Multimodal Vision Transformer Framework for Skin Cancer Diagnosis},
-
+  school    = {University of Hull},
+  year      = {2026},
+  supervisor = {Dr Temitayo Matthew Fagbola}
 }
 ```
 
